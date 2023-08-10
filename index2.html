@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebSocket Broadcast Example</title>
+  <!-- Tambahkan skrip socket.io-client -->
+</head>
+<body>
+  <!-- Konten halaman Anda -->
+  <h1>WebSocket Broadcast Example</h1>
+
+  <script>
+    // // Inisialisasi socket dan terhubung ke server WebSocket
+    // const socket = io('http://103.189.235.50:3000');
+
+    // // Tangani pesan yang diterima
+    // socket.on('message', (message) => {
+    //   const parsedMessage = JSON.parse(message);
+    //   if (parsedMessage.id === "2342" && parsedMessage.pesan === "pemabayaran berhasil") {
+    //     // Tampilkan pemberitahuan atau lakukan tindakan sesuai kebutuhan Anda
+    //     alert('Pembayaran berhasil!');
+    //   }
+    // });
+
+    const socket = new WebSocket('ws://localhost:3000'); // Ganti URL server sesuai dengan kebutuhan
+
+    // Event saat koneksi terbuka
+    socket.addEventListener('open', (event) => {
+    console.log('Koneksi terbuka');
+    
+    // Kirim pesan ke server saat koneksi terbuka (opsional)
+    const message = {
+        id: '2342',
+        pesan: 'Hello server!'
+    };
+    socket.send("Hello Server saya telah terhubung!");
+    });
+
+    // Event saat menerima pesan dari server
+    socket.addEventListener('message', (event) => {
+    const message = JSON.parse(event.data);
+    console.log('Menerima pesan:', message);
+
+    // Tindakan yang sesuai dengan pesan yang diterima
+    if (message.id == '2341') {
+        alert('Pembayaran berhasil!');
+    }
+    });
+
+    // Event saat koneksi ditutup
+    socket.addEventListener('close', (event) => {
+    console.log('Koneksi ditutup');
+    });
+
+  </script>
+</body>
+</html>
