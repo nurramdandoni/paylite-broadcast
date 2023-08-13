@@ -23,7 +23,7 @@
     //   }
     // });
 
-    const socket = new WebSocket('ws://localhost:3000'); // Ganti URL server sesuai dengan kebutuhan
+    const socket = new WebSocket('ws://localhost:8080'); // Ganti URL server sesuai dengan kebutuhan
 
     // Event saat koneksi terbuka
     socket.addEventListener('open', (event) => {
@@ -43,7 +43,7 @@
     console.log('Menerima pesan:', message);
 
     // Tindakan yang sesuai dengan pesan yang diterima
-    if (message.id == '2342') {
+    if (message.id == '2341') {
         alert('Pembayaran berhasil!');
     }
     });

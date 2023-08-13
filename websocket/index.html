@@ -23,8 +23,8 @@
     //   }
     // });
 
-    const socket = new WebSocket('ws://localhost:3000'); // Ganti URL server sesuai dengan kebutuhan
-
+    const socket = new WebSocket('wss://broadcast.paylite.co.id/socket/'); // Ganti URL server sesuai dengan kebutuhan
+    console.log(socket);
     // Event saat koneksi terbuka
     socket.addEventListener('open', (event) => {
     console.log('Koneksi terbuka');
@@ -43,7 +43,7 @@
     console.log('Menerima pesan:', message);
 
     // Tindakan yang sesuai dengan pesan yang diterima
-    if (message.id == '2341') {
+    if (message.id == '2342') {
         alert('Pembayaran berhasil!');
     }
     });

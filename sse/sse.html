@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    ini SSE (Server Sending Event)
+</body>
+<script>
+   const eventSource = new EventSource('http://localhost:3000');
+
+eventSource.onopen = (event) => {
+  console.log('SSE connection opened', event);
+};
+
+eventSource.onmessage = (event) => {
+  const data = JSON.parse(event.data);
+
+  if (data.data.index == 10) {
+    console.log('Received SSE message:', event.data);
+    eventSource.close(); // Close the SSE connection after receiving a specific message
+    console.log('SSE connection closed');
+  } else {
+    console.log('Received SSE message:', event.data);
+  }
+};
+
+eventSource.onerror = (event) => {
+  console.error('SSE error:', event);
+};
+
+</script>
+</html>

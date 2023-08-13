@@ -27,7 +27,9 @@ wss.on('connection', (ws) => {
     console.log('Client disconnected');
   });
 });
-
+app.get('/', (req, res) =>{
+  res.send("Server Broadcast Bekerja!");
+})
 app.post('/broadcast', (req, res) => {
   const message = req.body.message;
 
@@ -43,6 +45,6 @@ app.post('/broadcast', (req, res) => {
   }
 });
 
-server.listen(3000, () => {
-  console.log('Server listening on port 3000');
+server.listen(8080, () => {
+  console.log('Server listening on port 8080');
 });
